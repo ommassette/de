@@ -1,0 +1,1499 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Zur Goldenen Linde — Deutsche Küche seit 1897</title>
+<meta name="description" content="Zur Goldenen Linde — traditionelle deutsche Küche und Brauhaus-Kultur seit 1897.">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,400;1,500;1,600;1,700&display=swap" rel="stylesheet">
+
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
+  tailwind.config = {
+    corePlugins: { preflight: false },
+    theme: {
+      extend: {
+        colors: { gold: '#bf9261', ink: '#0a0a0a' },
+        fontFamily: {
+          display: ['Montserrat', 'sans-serif'],
+          sans: ['Montserrat', 'system-ui', 'sans-serif']
+        }
+      }
+    }
+  }
+</script>
+
+<script src="https://unpkg.com/htmx.org@1.9.12"></script>
+
+<link rel="stylesheet" href="style.css">
+</head>
+
+<body class="on-home">
+
+<!-- ══════════════════════════════════════════════════════════════════
+     LEFT VERTICAL RAIL
+     ══════════════════════════════════════════════════════════════════ -->
+<aside class="rail">
+
+  <a href="#/home" class="rail__logo" aria-label="Zur Goldenen Linde">
+    <i class="bi bi-tree rail__leaf" aria-hidden="true"></i>
+    <span class="rail__mark">GL</span>
+    <span class="rail__est">1897</span>
+  </a>
+
+  <button class="rail__burger" id="burger"
+          aria-label="Menü öffnen" aria-expanded="false" aria-controls="navOverlay">
+    <span></span><span></span><span></span>
+  </button>
+
+  <div class="rail__bottom">
+    <div class="lang" role="group" aria-label="Sprache / Language">
+      <button class="lang__btn is-active" data-lang="de">DE</button>
+      <span class="lang__sep"></span>
+      <button class="lang__btn" data-lang="en">EN</button>
+    </div>
+
+    <ul class="rail__social">
+      <li><a href="#" aria-label="Instagram" target="_blank" rel="noopener"><i class="bi bi-instagram"></i></a></li>
+      <li><a href="#" aria-label="Facebook"  target="_blank" rel="noopener"><i class="bi bi-facebook"></i></a></li>
+      <li><a href="#" aria-label="Pinterest" target="_blank" rel="noopener"><i class="bi bi-pinterest"></i></a></li>
+    </ul>
+  </div>
+</aside>
+
+
+<!-- ══════════════════════════════════════════════════════════════════
+     FULL-SCREEN BLUR NAV OVERLAY
+     ══════════════════════════════════════════════════════════════════ -->
+<div class="nav-overlay" id="navOverlay" aria-hidden="true">
+  <div class="nav-overlay__brand" data-i18n="brand.name">Zur Goldenen Linde</div>
+
+  <nav aria-label="Hauptnavigation">
+    <ul>
+      <li><a class="nav-link" href="#/home"    style="transition-delay:.10s"><span class="num">01</span><span data-i18n="nav.home">Startseite</span></a></li>
+      <li><a class="nav-link" href="#/about"   style="transition-delay:.17s"><span class="num">02</span><span data-i18n="nav.about">Über uns</span></a></li>
+      <li><a class="nav-link" href="#/menu"    style="transition-delay:.24s"><span class="num">03</span><span data-i18n="nav.menu">Speisekarte</span></a></li>
+      <li><a class="nav-link" href="#/book"    style="transition-delay:.31s"><span class="num">04</span><span data-i18n="nav.book">Tisch reservieren</span></a></li>
+      <li><a class="nav-link" href="#/contact" style="transition-delay:.38s"><span class="num">05</span><span data-i18n="nav.contact">Kontakt</span></a></li>
+    </ul>
+  </nav>
+
+  <div class="nav-overlay__foot">
+    <div class="lang" role="group" aria-label="Sprache / Language">
+      <button class="lang__btn is-active" data-lang="de">DE</button>
+      <span class="lang__sep"></span>
+      <button class="lang__btn" data-lang="en">EN</button>
+    </div>
+    <ul class="rail__social">
+      <li><a href="#" aria-label="Instagram" target="_blank" rel="noopener"><i class="bi bi-instagram"></i></a></li>
+      <li><a href="#" aria-label="Facebook"  target="_blank" rel="noopener"><i class="bi bi-facebook"></i></a></li>
+      <li><a href="#" aria-label="Pinterest" target="_blank" rel="noopener"><i class="bi bi-pinterest"></i></a></li>
+    </ul>
+  </div>
+</div>
+
+
+<!-- ══════════════════════════════════════════════════════════════════
+     ROUTED VIEWS
+     ══════════════════════════════════════════════════════════════════ -->
+<main id="app">
+
+  <!-- ═══════════  HOME  ═══════════ -->
+  <section data-page="home" class="page">
+
+    <!-- HERO -->
+    <div class="hero">
+      <div class="hero__media">
+        <img src="https://images.unsplash.com/photo-1414235077428-338989a2e8c0?auto=format&fit=crop&w=2400&q=80"
+             alt="" fetchpriority="high" decoding="async">
+      </div>
+      <div class="hero__veil"></div>
+
+      <div class="hero__content">
+        <div class="hero__stage" id="heroStage" aria-live="polite">
+          <div class="hero__slide is-active">
+            <h1 class="hero__title">
+              <span data-i18n="hero.1.a">Pure</span> <em data-i18n="hero.1.b">Eleganz</em>
+            </h1>
+          </div>
+          <div class="hero__slide">
+            <p class="hero__title">
+              <span data-i18n="hero.2.a">Pure</span> <em data-i18n="hero.2.b">Handwerk</em>
+            </p>
+          </div>
+          <div class="hero__slide">
+            <p class="hero__title">
+              <span data-i18n="hero.3.a">Pure</span> <em data-i18n="hero.3.b">Genuss</em>
+            </p>
+          </div>
+        </div>
+
+        <p class="hero__tagline" data-i18n="hero.tagline">
+          Handwerk, Herz und Herkunft — seit 1897.
+        </p>
+
+        <a href="#/book" class="hero__cta">
+          <span data-i18n="hero.cta">Jetzt reservieren</span>
+        </a>
+      </div>
+    </div>
+
+    <!-- INTRO / FEATURE -->
+    <div class="intro">
+      <div class="intro__top">
+        <div class="intro__cta">
+          <h2 class="intro__heading" data-i18n="intro.heading">
+            Deutsche Küche, mit Herz und Handwerk zubereitet.
+          </h2>
+          <a href="#/menu" class="intro__btn">
+            <span data-i18n="intro.btn">Zur Speisekarte</span>
+          </a>
+        </div>
+
+        <div class="intro__feature">
+          <img src="https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?auto=format&fit=crop&w=1400&q=80"
+               alt="" loading="lazy" decoding="async">
+        </div>
+      </div>
+
+      <div class="intro__strip">
+        <a href="#/menu"><img src="https://images.unsplash.com/photo-1504674900247-0877df9cc836?auto=format&fit=crop&w=800&q=80" alt="" loading="lazy" decoding="async"></a>
+        <a href="#/menu"><img src="https://images.unsplash.com/photo-1546069901-ba9599a7e63c?auto=format&fit=crop&w=800&q=80" alt="" loading="lazy" decoding="async"></a>
+        <a href="#/menu"><img src="https://images.unsplash.com/photo-1555939594-58d7cb561ad1?auto=format&fit=crop&w=800&q=80" alt="" loading="lazy" decoding="async"></a>
+        <a href="#/menu"><img src="https://images.unsplash.com/photo-1552566626-52f8b828add9?auto=format&fit=crop&w=800&q=80" alt="" loading="lazy" decoding="async"></a>
+      </div>
+    </div>
+
+    <!-- STORY -->
+    <div class="story">
+      <svg class="story__bg" viewBox="0 0 600 600" aria-hidden="true">
+        <g fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="300" cy="300" r="150"/>
+          <circle cx="300" cy="300" r="100"/>
+          <path d="M140 180v60a18 18 0 0 0 36 0v-60"/>
+          <path d="M148 180v30M168 180v30"/>
+          <path d="M158 258v160"/>
+          <path d="M460 180c-16 4-26 30-26 60 0 24 10 42 26 48v130"/>
+        </g>
+      </svg>
+
+      <div class="story__inner">
+        <div class="story__media">
+          <img src="https://images.unsplash.com/photo-1552566626-52f8b828add9?auto=format&fit=crop&w=1200&q=80"
+               alt="" loading="lazy" decoding="async">
+        </div>
+
+        <div class="story__content">
+          <h2 class="story__heading" data-i18n="story.heading">Ein Gasthaus mit Geschichte und mit Zukunft.</h2>
+          <p class="story__text" data-i18n="story.text">
+            Seit 1897 kochen wir mit Zutaten aus der Region, nach Rezepten, die von Generation zu Generation weitergegeben wurden. Ehrlich, saisonal und mit der Ruhe, die gutes Essen verdient.
+          </p>
+
+          <div class="story__list" data-accordion>
+
+            <div class="story__item is-open">
+              <button class="story__trigger" type="button" aria-expanded="true" aria-controls="story-p1">
+                <span data-i18n="story.q1">Woher kommen unsere Zutaten?</span>
+                <span class="story__chevron" aria-hidden="true"></span>
+              </button>
+              <div class="story__panel" id="story-p1" role="region">
+                <div class="story__panel-inner">
+                  <p class="story__answer" data-i18n="story.a1">
+                    Wir beziehen Fleisch, Gemüse und Kräuter von Höfen und Märkten im Umkreis von 80 Kilometern. Was nicht aus der Region kommt, wird klar gekennzeichnet.
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            <div class="story__item">
+              <button class="story__trigger" type="button" aria-expanded="false" aria-controls="story-p2">
+                <span data-i18n="story.q2">Kann man bei uns feiern?</span>
+                <span class="story__chevron" aria-hidden="true"></span>
+              </button>
+              <div class="story__panel" id="story-p2" role="region">
+                <div class="story__panel-inner">
+                  <p class="story__answer" data-i18n="story.a2">
+                    Ja. Unser Nebenraum fasst bis zu 40 Gäste für Geburtstage, Firmenfeiern und Familienessen. Sprich uns einfach an.
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            <div class="story__item">
+              <button class="story__trigger" type="button" aria-expanded="false" aria-controls="story-p3">
+                <span data-i18n="story.q3">Gibt es vegetarische Gerichte?</span>
+                <span class="story__chevron" aria-hidden="true"></span>
+              </button>
+              <div class="story__panel" id="story-p3" role="region">
+                <div class="story__panel-inner">
+                  <p class="story__answer" data-i18n="story.a3">
+                    Selbstverständlich. Ein Drittel unserer Karte ist vegetarisch, viele Gerichte lassen sich auf Wunsch vegan zubereiten.
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            <div class="story__item">
+              <button class="story__trigger" type="button" aria-expanded="false" aria-controls="story-p4">
+                <span data-i18n="story.q4">Wie reserviere ich einen Tisch?</span>
+                <span class="story__chevron" aria-hidden="true"></span>
+              </button>
+              <div class="story__panel" id="story-p4" role="region">
+                <div class="story__panel-inner">
+                  <p class="story__answer" data-i18n="story.a4">
+                    Am einfachsten online über unsere Reservierungsseite oder telefonisch während der Öffnungszeiten unter 030 123 456 78.
+                  </p>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- TESTIMONIALS -->
+    <div class="tst" data-carousel>
+      <div class="tst__viewport">
+        <div class="tst__track">
+
+          <article class="tst__slide">
+            <div class="tst__media">
+              <img src="https://images.unsplash.com/photo-1559339352-11d035aa65de?auto=format&fit=crop&w=2000&q=80"
+                   alt="" loading="lazy" decoding="async">
+            </div>
+            <div class="tst__card">
+              <p class="tst__quote" data-i18n="tst.1.quote">
+                Man schmeckt, dass hier noch gekocht und nicht nur zubereitet wird. Der Sauerbraten ist der beste, den ich in Berlin gegessen habe.
+              </p>
+              <span class="tst__line" aria-hidden="true"></span>
+              <p class="tst__author" data-i18n="tst.1.author">Anna Weber</p>
+              <p class="tst__role" data-i18n="tst.1.role">Stammgast seit 2008</p>
+            </div>
+          </article>
+
+          <article class="tst__slide">
+            <div class="tst__media">
+              <img src="https://images.unsplash.com/photo-1428515613728-6b4607e44363?auto=format&fit=crop&w=2000&q=80"
+                   alt="" loading="lazy" decoding="async">
+            </div>
+            <div class="tst__card">
+              <p class="tst__quote" data-i18n="tst.2.quote">
+                Ein Gasthaus, das seine Wurzeln kennt und trotzdem nie altmodisch wirkt. Die Saisonkarte ist jedes Mal eine Überraschung.
+              </p>
+              <span class="tst__line" aria-hidden="true"></span>
+              <p class="tst__author" data-i18n="tst.2.author">Thomas Krüger</p>
+              <p class="tst__role" data-i18n="tst.2.role">Food-Journalist, Berlin</p>
+            </div>
+          </article>
+
+          <article class="tst__slide">
+            <div class="tst__media">
+              <img src="https://images.unsplash.com/photo-1533777324565-a040eb52facd?auto=format&fit=crop&w=2000&q=80"
+                   alt="" loading="lazy" decoding="async">
+            </div>
+            <div class="tst__card">
+              <p class="tst__quote" data-i18n="tst.3.quote">
+                Wir haben den Nebenraum für eine Familienfeier gebucht. Der Service war aufmerksam, ohne aufdringlich zu sein, und das Essen hat alle begeistert.
+              </p>
+              <span class="tst__line" aria-hidden="true"></span>
+              <p class="tst__author" data-i18n="tst.3.author">Lena Hoffmann</p>
+              <p class="tst__role" data-i18n="tst.3.role">Geburtstagsfeier, 40 Gäste</p>
+            </div>
+          </article>
+
+          <article class="tst__slide">
+            <div class="tst__media">
+              <img src="https://images.unsplash.com/photo-1466978913421-dad2ebd01d17?auto=format&fit=crop&w=2000&q=80"
+                   alt="" loading="lazy" decoding="async">
+            </div>
+            <div class="tst__card">
+              <p class="tst__quote" data-i18n="tst.4.quote">
+                Von der Reservierung bis zum Dessert hat einfach alles gestimmt. Unser Team fragt schon nach dem nächsten Termin.
+              </p>
+              <span class="tst__line" aria-hidden="true"></span>
+              <p class="tst__author" data-i18n="tst.4.author">Markus Schmidt</p>
+              <p class="tst__role" data-i18n="tst.4.role">Betriebsfeier, 30 Gäste</p>
+            </div>
+          </article>
+
+        </div>
+      </div>
+
+      <div class="tst__controls">
+        <div class="tst__dots" role="tablist" aria-label="Testimonials">
+          <button class="is-active" data-goto="0" aria-label="1"></button>
+          <button data-goto="1" aria-label="2"></button>
+          <button data-goto="2" aria-label="3"></button>
+          <button data-goto="3" aria-label="4"></button>
+        </div>
+
+        <div class="tst__arrows">
+          <button class="tst__arrow tst__arrow--prev" type="button" aria-label="Zurück">
+            <i class="bi bi-chevron-left" aria-hidden="true"></i>
+          </button>
+          <button class="tst__arrow tst__arrow--next" type="button" aria-label="Weiter">
+            <i class="bi bi-chevron-right" aria-hidden="true"></i>
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- CATEGORIES -->
+    <div class="cat">
+      <a href="#/menu" class="cat__item">
+        <img src="https://images.unsplash.com/photo-1514933651103-005eec06c04b?auto=format&fit=crop&w=1400&q=80" alt="" loading="lazy" decoding="async">
+        <span class="cat__veil" aria-hidden="true"></span>
+        <span class="cat__body">
+          <span class="cat__title" data-i18n="cat.1.title">Vorspeisen</span>
+          <span class="cat__text"  data-i18n="cat.1.text">Kleine Gerichte, die den Abend einleiten.</span>
+        </span>
+      </a>
+
+      <a href="#/menu" class="cat__item">
+        <img src="https://images.unsplash.com/photo-1600891964092-4316c288032e?auto=format&fit=crop&w=1400&q=80" alt="" loading="lazy" decoding="async">
+        <span class="cat__veil" aria-hidden="true"></span>
+        <span class="cat__body">
+          <span class="cat__title" data-i18n="cat.2.title">Hauptgerichte</span>
+          <span class="cat__text"  data-i18n="cat.2.text">Klassiker aus Fleisch, Fisch und Gemüse.</span>
+        </span>
+      </a>
+
+      <a href="#/menu" class="cat__item">
+        <img src="https://images.unsplash.com/photo-1551024506-0bccd828d307?auto=format&fit=crop&w=1400&q=80" alt="" loading="lazy" decoding="async">
+        <span class="cat__veil" aria-hidden="true"></span>
+        <span class="cat__body">
+          <span class="cat__title" data-i18n="cat.3.title">Desserts</span>
+          <span class="cat__text"  data-i18n="cat.3.text">Süßes aus der eigenen Backstube.</span>
+        </span>
+      </a>
+
+      <a href="#/menu" class="cat__item">
+        <img src="https://images.unsplash.com/photo-1436076863939-06870fe779c2?auto=format&fit=crop&w=1400&q=80" alt="" loading="lazy" decoding="async">
+        <span class="cat__veil" aria-hidden="true"></span>
+        <span class="cat__body">
+          <span class="cat__title" data-i18n="cat.4.title">Getränke</span>
+          <span class="cat__text"  data-i18n="cat.4.text">Bier, Wein und Brunnen aus der Region.</span>
+        </span>
+      </a>
+    </div>
+
+    <!-- CTA BANNER -->
+    <div class="cta">
+      <div class="cta__bg" aria-hidden="true">
+        <img src="https://images.unsplash.com/photo-1550966871-3ed3cdb5ed0c?auto=format&fit=crop&w=2400&q=80" alt="" loading="lazy" decoding="async">
+      </div>
+      <span class="cta__veil" aria-hidden="true"></span>
+
+      <div class="cta__inner">
+        <h2 class="cta__title" data-i18n="cta.title">Ein Tisch bei uns ist schnell reserviert.</h2>
+        <p class="cta__text" data-i18n="cta.text">
+          Ob für zwei, für vier oder für eine ganze Feier. Wir halten Ihnen den Platz frei und kümmern uns um den Rest.
+        </p>
+        <a href="#/book" class="cta__btn">
+          <span data-i18n="cta.btn">Tisch reservieren</span>
+        </a>
+      </div>
+    </div>
+
+    <!-- FOOTER -->
+    <footer class="ft">
+      <div class="ft__bg" aria-hidden="true">
+        <img src="https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?auto=format&fit=crop&w=2400&q=80" alt="" loading="lazy" decoding="async">
+      </div>
+      <span class="ft__veil" aria-hidden="true"></span>
+
+      <div class="ft__inner">
+
+        <div class="ft__col">
+          <h3 class="ft__label" data-i18n="ft.addr.label">Anschrift</h3>
+          <address class="ft__addr">
+            <span data-i18n="ft.addr.street">Lindenstraße 42</span><br>
+            <span data-i18n="ft.addr.city">10179 Berlin</span><br>
+            <span data-i18n="ft.addr.country">Deutschland</span>
+          </address>
+
+          <h3 class="ft__label ft__label--mt" data-i18n="ft.pay.label">Zahlungsarten</h3>
+          <ul class="ft__pay">
+            <li><i class="bi bi-credit-card-2-front" title="Kreditkarte"></i></li>
+            <li><i class="bi bi-paypal" title="PayPal"></i></li>
+            <li><i class="bi bi-apple" title="Apple Pay"></i></li>
+            <li><i class="bi bi-google" title="Google Pay"></i></li>
+            <li><i class="bi bi-cash-coin" title="Bar"></i></li>
+          </ul>
+        </div>
+
+        <div class="ft__col ft__col--brand">
+          <a href="#/home" class="ft__logo" aria-label="Zur Goldenen Linde">
+            <i class="bi bi-tree ft__leaf" aria-hidden="true"></i>
+            <span class="ft__mark">GL</span>
+            <span class="ft__est">1897</span>
+          </a>
+
+          <p class="ft__para" data-i18n="ft.para">
+            Ein Gasthaus im Herzen Berlins. Seit 1897 kochen wir mit Zutaten aus der Region und mit der Ruhe, die gutes Essen verdient.
+          </p>
+
+          <ul class="ft__social">
+            <li><a href="#" aria-label="Instagram" target="_blank" rel="noopener"><i class="bi bi-instagram"></i></a></li>
+            <li><a href="#" aria-label="Facebook"  target="_blank" rel="noopener"><i class="bi bi-facebook"></i></a></li>
+            <li><a href="#" aria-label="Pinterest" target="_blank" rel="noopener"><i class="bi bi-pinterest"></i></a></li>
+            <li><a href="#" aria-label="YouTube"   target="_blank" rel="noopener"><i class="bi bi-youtube"></i></a></li>
+          </ul>
+        </div>
+
+        <div class="ft__col">
+          <h3 class="ft__label" data-i18n="ft.contact.label">Kontakt</h3>
+          <ul class="ft__contact">
+            <li>
+              <i class="bi bi-telephone" aria-hidden="true"></i>
+              <a href="tel:+493012345678">030 123 456 78</a>
+            </li>
+            <li>
+              <i class="bi bi-envelope" aria-hidden="true"></i>
+              <a href="mailto:hallo@zurgoldenenlinde.de">hallo@zurgoldenenlinde.de</a>
+            </li>
+            <li>
+              <i class="bi bi-clock" aria-hidden="true"></i>
+              <span data-i18n="ft.contact.hours">Di bis So, 17:00 bis 23:00</span>
+            </li>
+            <li>
+              <i class="bi bi-geo-alt" aria-hidden="true"></i>
+              <a href="#/contact" data-i18n="ft.contact.map">Auf der Karte ansehen</a>
+            </li>
+          </ul>
+        </div>
+
+      </div>
+
+      <div class="ft__base">
+        <p>&copy; <span id="year"></span> Zur Goldenen Linde. <span data-i18n="ft.rights">Alle Rechte vorbehalten.</span></p>
+      </div>
+    </footer>
+
+  </section>
+
+
+  <!-- ═══════════  ABOUT  ═══════════ -->
+  <section data-page="about" class="page" hidden>
+
+    <div class="abh">
+      <div class="abh__bg" aria-hidden="true">
+        <img src="https://images.unsplash.com/photo-1466978913421-dad2ebd01d17?auto=format&fit=crop&w=2400&q=80" alt="" loading="eager" decoding="async">
+      </div>
+      <span class="abh__veil" aria-hidden="true"></span>
+      <div class="abh__inner">
+        <h1 class="abh__title" data-i18n="about.hero.title">Unsere Geschichte</h1>
+      </div>
+    </div>
+
+    <div class="std">
+      <div class="std__inner">
+        <div class="std__media">
+          <img src="https://images.unsplash.com/photo-1577219491135-ce391730fb2c?auto=format&fit=crop&w=1200&q=80" alt="" loading="lazy" decoding="async">
+        </div>
+
+        <div class="std__content">
+          <h2 class="std__heading" data-i18n="about.std.heading">Unsere Standards</h2>
+          <p class="std__text" data-i18n="about.std.text">
+            Gutes Essen beginnt lange vor dem Teller. Wir arbeiten mit Betrieben, die wir persönlich kennen, kochen saisonal und nehmen uns Zeit für die Dinge, die man nicht abkürzen kann.
+          </p>
+
+          <div class="std__bars" data-bars>
+            <div class="std__bar">
+              <div class="std__bar-top">
+                <span data-i18n="about.std.b1">Frische Zutaten</span>
+                <span class="std__val">98%</span>
+              </div>
+              <div class="std__track"><span class="std__fill" data-value="98"></span></div>
+            </div>
+
+            <div class="std__bar">
+              <div class="std__bar-top">
+                <span data-i18n="about.std.b2">Handwerkliche Zubereitung</span>
+                <span class="std__val">95%</span>
+              </div>
+              <div class="std__track"><span class="std__fill" data-value="95"></span></div>
+            </div>
+
+            <div class="std__bar">
+              <div class="std__bar-top">
+                <span data-i18n="about.std.b3">Regionale Herkunft</span>
+                <span class="std__val">92%</span>
+              </div>
+              <div class="std__track"><span class="std__fill" data-value="92"></span></div>
+            </div>
+
+            <div class="std__bar">
+              <div class="std__bar-top">
+                <span data-i18n="about.std.b4">Persönlicher Service</span>
+                <span class="std__val">96%</span>
+              </div>
+              <div class="std__track"><span class="std__fill" data-value="96"></span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="tri">
+      <div class="tri__col tri__col--dark">
+        <div class="tri__square">
+          <img src="https://images.unsplash.com/photo-1550966871-3ed3cdb5ed0c?auto=format&fit=crop&w=1200&q=80" alt="" loading="lazy" decoding="async">
+        </div>
+        <p class="tri__text" data-i18n="about.tri.1.text">
+          Ein Abend bei uns ist mehr als ein Essen. Er ist Zeit für sich, für Freunde und für das, was auf den Tisch kommt.
+        </p>
+        <a href="#/book" class="tri__btn tri__btn--gold">
+          <span data-i18n="about.tri.1.btn">Tisch reservieren</span>
+        </a>
+      </div>
+
+      <div class="tri__col tri__col--image">
+        <img class="tri__full" src="https://images.unsplash.com/photo-1414235077428-338989a2e8c0?auto=format&fit=crop&w=1600&q=80" alt="" loading="lazy" decoding="async">
+        <span class="tri__imgveil" aria-hidden="true"></span>
+        <p class="tri__text" data-i18n="about.tri.2.text">
+          Vom ersten Gruß an der Tür bis zum letzten Bissen am Teller.
+        </p>
+      </div>
+
+      <div class="tri__col tri__col--light">
+        <div class="tri__square">
+          <img src="https://images.unsplash.com/photo-1424847651672-bf20a4b0982b?auto=format&fit=crop&w=1200&q=80" alt="" loading="lazy" decoding="async">
+        </div>
+        <p class="tri__text" data-i18n="about.tri.3.text">
+          Was uns seit über hundert Jahren trägt, ist die Nähe zu den Menschen und die Liebe zum Detail.
+        </p>
+        <a href="#/menu" class="tri__btn tri__btn--outline">
+          <span data-i18n="about.tri.3.btn">Zur Speisekarte</span>
+        </a>
+      </div>
+    </div>
+
+    <div class="vals">
+      <div class="vals__inner">
+        <div class="vals__col">
+          <span class="vals__num" aria-hidden="true">01</span>
+          <h3 class="vals__title" data-i18n="about.vals.1.title">Küche</h3>
+          <p class="vals__text" data-i18n="about.vals.1.text">
+            Saisonal, ehrlich und ohne Umwege. Wir kochen, was die Region hergibt, und lassen die Zutaten für sich sprechen.
+          </p>
+        </div>
+
+        <div class="vals__col">
+          <span class="vals__num" aria-hidden="true">02</span>
+          <h3 class="vals__title" data-i18n="about.vals.2.title">Philosophie</h3>
+          <p class="vals__text" data-i18n="about.vals.2.text">
+            Gastfreundschaft heißt bei uns, dass niemand sich erklären muss. Man kommt an, setzt sich und ist willkommen.
+          </p>
+        </div>
+
+        <div class="vals__col">
+          <span class="vals__num" aria-hidden="true">03</span>
+          <h3 class="vals__title" data-i18n="about.vals.3.title">Handwerk</h3>
+          <p class="vals__text" data-i18n="about.vals.3.text">
+            Vom Brotteig über die Soßen bis zum Dessert entsteht bei uns alles in der eigenen Küche. Ohne Abkürzungen.
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <footer class="ft">
+      <div class="ft__bg" aria-hidden="true">
+        <img src="https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?auto=format&fit=crop&w=2400&q=80" alt="" loading="lazy" decoding="async">
+      </div>
+      <span class="ft__veil" aria-hidden="true"></span>
+
+      <div class="ft__inner">
+        <div class="ft__col">
+          <h3 class="ft__label" data-i18n="ft.addr.label">Anschrift</h3>
+          <address class="ft__addr">
+            <span data-i18n="ft.addr.street">Lindenstraße 42</span><br>
+            <span data-i18n="ft.addr.city">10179 Berlin</span><br>
+            <span data-i18n="ft.addr.country">Deutschland</span>
+          </address>
+
+          <h3 class="ft__label ft__label--mt" data-i18n="ft.pay.label">Zahlungsarten</h3>
+          <ul class="ft__pay">
+            <li><i class="bi bi-credit-card-2-front" title="Kreditkarte"></i></li>
+            <li><i class="bi bi-paypal" title="PayPal"></i></li>
+            <li><i class="bi bi-apple" title="Apple Pay"></i></li>
+            <li><i class="bi bi-google" title="Google Pay"></i></li>
+            <li><i class="bi bi-cash-coin" title="Bar"></i></li>
+          </ul>
+        </div>
+
+        <div class="ft__col ft__col--brand">
+          <a href="#/home" class="ft__logo" aria-label="Zur Goldenen Linde">
+            <i class="bi bi-tree ft__leaf" aria-hidden="true"></i>
+            <span class="ft__mark">GL</span>
+            <span class="ft__est">1897</span>
+          </a>
+
+          <p class="ft__para" data-i18n="ft.para">
+            Ein Gasthaus im Herzen Berlins. Seit 1897 kochen wir mit Zutaten aus der Region und mit der Ruhe, die gutes Essen verdient.
+          </p>
+
+          <ul class="ft__social">
+            <li><a href="#" aria-label="Instagram" target="_blank" rel="noopener"><i class="bi bi-instagram"></i></a></li>
+            <li><a href="#" aria-label="Facebook"  target="_blank" rel="noopener"><i class="bi bi-facebook"></i></a></li>
+            <li><a href="#" aria-label="Pinterest" target="_blank" rel="noopener"><i class="bi bi-pinterest"></i></a></li>
+            <li><a href="#" aria-label="YouTube"   target="_blank" rel="noopener"><i class="bi bi-youtube"></i></a></li>
+          </ul>
+        </div>
+
+        <div class="ft__col">
+          <h3 class="ft__label" data-i18n="ft.contact.label">Kontakt</h3>
+          <ul class="ft__contact">
+            <li><i class="bi bi-telephone" aria-hidden="true"></i><a href="tel:+493012345678">030 123 456 78</a></li>
+            <li><i class="bi bi-envelope"  aria-hidden="true"></i><a href="mailto:hallo@zurgoldenenlinde.de">hallo@zurgoldenenlinde.de</a></li>
+            <li><i class="bi bi-clock"     aria-hidden="true"></i><span data-i18n="ft.contact.hours">Di bis So, 17:00 bis 23:00</span></li>
+            <li><i class="bi bi-geo-alt"   aria-hidden="true"></i><a href="#/contact" data-i18n="ft.contact.map">Auf der Karte ansehen</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="ft__base">
+        <p>&copy; <span id="year"></span> Zur Goldenen Linde. <span data-i18n="ft.rights">Alle Rechte vorbehalten.</span></p>
+      </div>
+    </footer>
+
+  </section>
+
+
+  <!-- ═══════════  MENU  ═══════════ -->
+  <section data-page="menu" class="page" hidden>
+
+    <!-- SECTION 1 — Vorspeisen -->
+    <div class="mn" data-menu>
+      <div class="mn__banner">
+        <img src="https://images.unsplash.com/photo-1551024506-0bccd828d307?auto=format&fit=crop&w=2400&q=80" alt="" loading="lazy" decoding="async">
+        <span class="mn__banner-veil" aria-hidden="true"></span>
+        <div class="mn__banner-inner">
+          <h2 class="mn__banner-title" data-i18n="menu.s1.title">Vorspeisen</h2>
+        </div>
+      </div>
+
+      <div class="mn__card mn__card--white">
+        <div class="mn__card-inner">
+          <div class="mn__card-head">
+            <h3 class="mn__card-title" data-i18n="menu.s1.title">Vorspeisen</h3>
+            <div class="mn__nav">
+              <button class="mn__arrow mn__arrow--prev" type="button" aria-label="Zurück"><i class="bi bi-chevron-left"></i></button>
+              <button class="mn__arrow mn__arrow--next" type="button" aria-label="Weiter"><i class="bi bi-chevron-right"></i></button>
+            </div>
+          </div>
+
+          <div class="mn__viewport">
+            <div class="mn__track">
+
+              <div class="mn__page">
+                <ul class="mn__list">
+                  <li class="mn__item">
+                    <div class="mn__row">
+                      <span class="mn__name" data-i18n="menu.s1.i1.name">Brezel mit Butter</span>
+                      <span class="mn__leader" aria-hidden="true"></span>
+                      <span class="mn__price">4,50 €</span>
+                    </div>
+                    <p class="mn__desc" data-i18n="menu.s1.i1.desc">Frisch gebacken, mit Süßrahmbutter.</p>
+                  </li>
+                  <li class="mn__item">
+                    <div class="mn__row">
+                      <span class="mn__name" data-i18n="menu.s1.i2.name">Handkäs mit Musik</span>
+                      <span class="mn__leader" aria-hidden="true"></span>
+                      <span class="mn__price">8,90 €</span>
+                    </div>
+                    <p class="mn__desc" data-i18n="menu.s1.i2.desc">Mit Zwiebeln, Essig und Öl.</p>
+                  </li>
+                  <li class="mn__item">
+                    <div class="mn__row">
+                      <span class="mn__name" data-i18n="menu.s1.i3.name">Kartoffelsuppe</span>
+                      <span class="mn__leader" aria-hidden="true"></span>
+                      <span class="mn__price">7,50 €</span>
+                    </div>
+                    <p class="mn__desc" data-i18n="menu.s1.i3.desc">Mit Majoran und geröstetem Brot.</p>
+                  </li>
+                  <li class="mn__item">
+                    <div class="mn__row">
+                      <span class="mn__name" data-i18n="menu.s1.i4.name">Matjes mit Zwiebeln</span>
+                      <span class="mn__leader" aria-hidden="true"></span>
+                      <span class="mn__price">12,90 €</span>
+                    </div>
+                    <p class="mn__desc" data-i18n="menu.s1.i4.desc">Auf Schwarzbrot mit Apfel und Zwiebel.</p>
+                  </li>
+                </ul>
+              </div>
+
+              <div class="mn__page">
+                <ul class="mn__list">
+                  <li class="mn__item">
+                    <div class="mn__row">
+                      <span class="mn__name" data-i18n="menu.s1.i5.name">Leberwurst-Terrine</span>
+                      <span class="mn__leader" aria-hidden="true"></span>
+                      <span class="mn__price">9,50 €</span>
+                    </div>
+                    <p class="mn__desc" data-i18n="menu.s1.i5.desc">Mit Bratkartoffelbrot und Gurke.</p>
+                  </li>
+                  <li class="mn__item">
+                    <div class="mn__row">
+                      <span class="mn__name" data-i18n="menu.s1.i6.name">Geräucherter Lachs</span>
+                      <span class="mn__leader" aria-hidden="true"></span>
+                      <span class="mn__price">13,50 €</span>
+                    </div>
+                    <p class="mn__desc" data-i18n="menu.s1.i6.desc">Mit Meerrettich und Zitrone.</p>
+                  </li>
+                  <li class="mn__item">
+                    <div class="mn__row">
+                      <span class="mn__name" data-i18n="menu.s1.i7.name">Obatzda mit Brezel</span>
+                      <span class="mn__leader" aria-hidden="true"></span>
+                      <span class="mn__price">8,90 €</span>
+                    </div>
+                    <p class="mn__desc" data-i18n="menu.s1.i7.desc">Mit Paprikapulver und Zwiebel.</p>
+                  </li>
+                  <li class="mn__item">
+                    <div class="mn__row">
+                      <span class="mn__name" data-i18n="menu.s1.i8.name">Gurkensalat mit Dill</span>
+                      <span class="mn__leader" aria-hidden="true"></span>
+                      <span class="mn__price">5,50 €</span>
+                    </div>
+                    <p class="mn__desc" data-i18n="menu.s1.i8.desc">Mit Essig, Öl und frischem Dill.</p>
+                  </li>
+                </ul>
+              </div>
+
+            </div>
+          </div>
+
+          <div class="mn__dots" role="tablist" aria-label="Seiten"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- SECTION 2 — Hauptgerichte -->
+    <div class="mn" data-menu>
+      <div class="mn__banner">
+        <img src="https://images.unsplash.com/photo-1600891964092-4316c288032e?auto=format&fit=crop&w=2400&q=80" alt="" loading="lazy" decoding="async">
+        <span class="mn__banner-veil" aria-hidden="true"></span>
+        <div class="mn__banner-inner">
+          <h2 class="mn__banner-title" data-i18n="menu.s2.title">Hauptgerichte</h2>
+        </div>
+      </div>
+
+      <div class="mn__card mn__card--black">
+        <div class="mn__card-inner">
+          <div class="mn__card-head">
+            <h3 class="mn__card-title" data-i18n="menu.s2.title">Hauptgerichte</h3>
+            <div class="mn__nav">
+              <button class="mn__arrow mn__arrow--prev" type="button" aria-label="Zurück"><i class="bi bi-chevron-left"></i></button>
+              <button class="mn__arrow mn__arrow--next" type="button" aria-label="Weiter"><i class="bi bi-chevron-right"></i></button>
+            </div>
+          </div>
+
+          <div class="mn__viewport">
+            <div class="mn__track">
+
+              <div class="mn__page">
+                <ul class="mn__list">
+                  <li class="mn__item">
+                    <div class="mn__row">
+                      <span class="mn__name" data-i18n="menu.s2.i1.name">Wiener Schnitzel</span>
+                      <span class="mn__leader" aria-hidden="true"></span>
+                      <span class="mn__price">22,50 €</span>
+                    </div>
+                    <p class="mn__desc" data-i18n="menu.s2.i1.desc">Vom Kalb, mit Zitrone und Kartoffelsalat.</p>
+                  </li>
+                  <li class="mn__item">
+                    <div class="mn__row">
+                      <span class="mn__name" data-i18n="menu.s2.i2.name">Sauerbraten</span>
+                      <span class="mn__leader" aria-hidden="true"></span>
+                      <span class="mn__price">24,90 €</span>
+                    </div>
+                    <p class="mn__desc" data-i18n="menu.s2.i2.desc">Mit Rotkohl und Klößen.</p>
+                  </li>
+                  <li class="mn__item">
+                    <div class="mn__row">
+                      <span class="mn__name" data-i18n="menu.s2.i3.name">Bratwurst mit Sauerkraut</span>
+                      <span class="mn__leader" aria-hidden="true"></span>
+                      <span class="mn__price">16,50 €</span>
+                    </div>
+                    <p class="mn__desc" data-i18n="menu.s2.i3.desc">Vom eigenen Metzger, mit Senf.</p>
+                  </li>
+                  <li class="mn__item">
+                    <div class="mn__row">
+                      <span class="mn__name" data-i18n="menu.s2.i4.name">Rinderrouladen</span>
+                      <span class="mn__leader" aria-hidden="true"></span>
+                      <span class="mn__price">26,90 €</span>
+                    </div>
+                    <p class="mn__desc" data-i18n="menu.s2.i4.desc">Mit Speck, Gurke und Rotweinsoße.</p>
+                  </li>
+                </ul>
+              </div>
+
+              <div class="mn__page">
+                <ul class="mn__list">
+                  <li class="mn__item">
+                    <div class="mn__row">
+                      <span class="mn__name" data-i18n="menu.s2.i5.name">Königsberger Klopse</span>
+                      <span class="mn__leader" aria-hidden="true"></span>
+                      <span class="mn__price">19,90 €</span>
+                    </div>
+                    <p class="mn__desc" data-i18n="menu.s2.i5.desc">Mit Kapernsoße und Salzkartoffeln.</p>
+                  </li>
+                  <li class="mn__item">
+                    <div class="mn__row">
+                      <span class="mn__name" data-i18n="menu.s2.i6.name">Schweinshaxe</span>
+                      <span class="mn__leader" aria-hidden="true"></span>
+                      <span class="mn__price">27,50 €</span>
+                    </div>
+                    <p class="mn__desc" data-i18n="menu.s2.i6.desc">Mit Dunkelbiersoße und Krautsalat.</p>
+                  </li>
+                  <li class="mn__item">
+                    <div class="mn__row">
+                      <span class="mn__name" data-i18n="menu.s2.i7.name">Maultaschen</span>
+                      <span class="mn__leader" aria-hidden="true"></span>
+                      <span class="mn__price">18,50 €</span>
+                    </div>
+                    <p class="mn__desc" data-i18n="menu.s2.i7.desc">In klarer Brühe mit Schnittlauch.</p>
+                  </li>
+                  <li class="mn__item">
+                    <div class="mn__row">
+                      <span class="mn__name" data-i18n="menu.s2.i8.name">Zanderfilet</span>
+                      <span class="mn__leader" aria-hidden="true"></span>
+                      <span class="mn__price">25,90 €</span>
+                    </div>
+                    <p class="mn__desc" data-i18n="menu.s2.i8.desc">Mit Kräuterbutter und Gemüse der Saison.</p>
+                  </li>
+                </ul>
+              </div>
+
+            </div>
+          </div>
+
+          <div class="mn__dots" role="tablist" aria-label="Seiten"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- SECTION 3 — Desserts -->
+    <div class="mn" data-menu>
+      <div class="mn__banner">
+        <img src="https://images.unsplash.com/photo-1551024506-0bccd828d307?auto=format&fit=crop&w=2400&q=80" alt="" loading="lazy" decoding="async">
+        <span class="mn__banner-veil" aria-hidden="true"></span>
+        <div class="mn__banner-inner">
+          <h2 class="mn__banner-title" data-i18n="menu.s3.title">Desserts</h2>
+        </div>
+      </div>
+
+      <div class="mn__card mn__card--white">
+        <div class="mn__card-inner">
+          <div class="mn__card-head">
+            <h3 class="mn__card-title" data-i18n="menu.s3.title">Desserts</h3>
+            <div class="mn__nav">
+              <button class="mn__arrow mn__arrow--prev" type="button" aria-label="Zurück"><i class="bi bi-chevron-left"></i></button>
+              <button class="mn__arrow mn__arrow--next" type="button" aria-label="Weiter"><i class="bi bi-chevron-right"></i></button>
+            </div>
+          </div>
+
+          <div class="mn__viewport">
+            <div class="mn__track">
+
+              <div class="mn__page">
+                <ul class="mn__list">
+                  <li class="mn__item">
+                    <div class="mn__row">
+                      <span class="mn__name" data-i18n="menu.s3.i1.name">Apfelstrudel</span>
+                      <span class="mn__leader" aria-hidden="true"></span>
+                      <span class="mn__price">8,50 €</span>
+                    </div>
+                    <p class="mn__desc" data-i18n="menu.s3.i1.desc">Mit Vanillesoße und Zimt.</p>
+                  </li>
+                  <li class="mn__item">
+                    <div class="mn__row">
+                      <span class="mn__name" data-i18n="menu.s3.i2.name">Schwarzwälder Kirschtorte</span>
+                      <span class="mn__leader" aria-hidden="true"></span>
+                      <span class="mn__price">7,90 €</span>
+                    </div>
+                    <p class="mn__desc" data-i18n="menu.s3.i2.desc">Mit Sahne und Kirschwasser.</p>
+                  </li>
+                  <li class="mn__item">
+                    <div class="mn__row">
+                      <span class="mn__name" data-i18n="menu.s3.i3.name">Kaiserschmarrn</span>
+                      <span class="mn__leader" aria-hidden="true"></span>
+                      <span class="mn__price">9,50 €</span>
+                    </div>
+                    <p class="mn__desc" data-i18n="menu.s3.i3.desc">Mit Rosinen und Apfelmus.</p>
+                  </li>
+                  <li class="mn__item">
+                    <div class="mn__row">
+                      <span class="mn__name" data-i18n="menu.s3.i4.name">Rote Grütze</span>
+                      <span class="mn__leader" aria-hidden="true"></span>
+                      <span class="mn__price">7,50 €</span>
+                    </div>
+                    <p class="mn__desc" data-i18n="menu.s3.i4.desc">Mit Vanillesoße oder Sahne.</p>
+                  </li>
+                </ul>
+              </div>
+
+              <div class="mn__page">
+                <ul class="mn__list">
+                  <li class="mn__item">
+                    <div class="mn__row">
+                      <span class="mn__name" data-i18n="menu.s3.i5.name">Bienenstich</span>
+                      <span class="mn__leader" aria-hidden="true"></span>
+                      <span class="mn__price">7,20 €</span>
+                    </div>
+                    <p class="mn__desc" data-i18n="menu.s3.i5.desc">Mit Mandeln und Vanillecreme.</p>
+                  </li>
+                  <li class="mn__item">
+                    <div class="mn__row">
+                      <span class="mn__name" data-i18n="menu.s3.i6.name">Kirschmichel</span>
+                      <span class="mn__leader" aria-hidden="true"></span>
+                      <span class="mn__price">8,90 €</span>
+                    </div>
+                    <p class="mn__desc" data-i18n="menu.s3.i6.desc">Mit heißen Kirschen und Sahne.</p>
+                  </li>
+                  <li class="mn__item">
+                    <div class="mn__row">
+                      <span class="mn__name" data-i18n="menu.s3.i7.name">Grießpudding</span>
+                      <span class="mn__leader" aria-hidden="true"></span>
+                      <span class="mn__price">7,50 €</span>
+                    </div>
+                    <p class="mn__desc" data-i18n="menu.s3.i7.desc">Mit Zimt und brauner Butter.</p>
+                  </li>
+                  <li class="mn__item">
+                    <div class="mn__row">
+                      <span class="mn__name" data-i18n="menu.s3.i8.name">Quarkbällchen</span>
+                      <span class="mn__leader" aria-hidden="true"></span>
+                      <span class="mn__price">6,80 €</span>
+                    </div>
+                    <p class="mn__desc" data-i18n="menu.s3.i8.desc">Mit Puderzucker, frisch frittiert.</p>
+                  </li>
+                </ul>
+              </div>
+
+            </div>
+          </div>
+
+          <div class="mn__dots" role="tablist" aria-label="Seiten"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- SECTION 4 — Getränke -->
+    <div class="mn" data-menu>
+      <div class="mn__banner">
+        <img src="https://images.unsplash.com/photo-1436076863939-06870fe779c2?auto=format&fit=crop&w=2400&q=80" alt="" loading="lazy" decoding="async">
+        <span class="mn__banner-veil" aria-hidden="true"></span>
+        <div class="mn__banner-inner">
+          <h2 class="mn__banner-title" data-i18n="menu.s4.title">Getränke</h2>
+        </div>
+      </div>
+
+      <div class="mn__card mn__card--black">
+        <div class="mn__card-inner">
+          <div class="mn__card-head">
+            <h3 class="mn__card-title" data-i18n="menu.s4.title">Getränke</h3>
+            <div class="mn__nav">
+              <button class="mn__arrow mn__arrow--prev" type="button" aria-label="Zurück"><i class="bi bi-chevron-left"></i></button>
+              <button class="mn__arrow mn__arrow--next" type="button" aria-label="Weiter"><i class="bi bi-chevron-right"></i></button>
+            </div>
+          </div>
+
+          <div class="mn__viewport">
+            <div class="mn__track">
+
+              <div class="mn__page">
+                <ul class="mn__list">
+                  <li class="mn__item">
+                    <div class="mn__row">
+                      <span class="mn__name" data-i18n="menu.s4.i1.name">Berliner Weiße</span>
+                      <span class="mn__leader" aria-hidden="true"></span>
+                      <span class="mn__price">4,50 €</span>
+                    </div>
+                    <p class="mn__desc" data-i18n="menu.s4.i1.desc">Mit Schuss, grün oder rot.</p>
+                  </li>
+                  <li class="mn__item">
+                    <div class="mn__row">
+                      <span class="mn__name" data-i18n="menu.s4.i2.name">Riesling trocken</span>
+                      <span class="mn__leader" aria-hidden="true"></span>
+                      <span class="mn__price">6,90 €</span>
+                    </div>
+                    <p class="mn__desc" data-i18n="menu.s4.i2.desc">0,2 l, von der Mosel.</p>
+                  </li>
+                  <li class="mn__item">
+                    <div class="mn__row">
+                      <span class="mn__name" data-i18n="menu.s4.i3.name">Pils vom Fass</span>
+                      <span class="mn__leader" aria-hidden="true"></span>
+                      <span class="mn__price">4,20 €</span>
+                    </div>
+                    <p class="mn__desc" data-i18n="menu.s4.i3.desc">0,3 l, aus der Region.</p>
+                  </li>
+                  <li class="mn__item">
+                    <div class="mn__row">
+                      <span class="mn__name" data-i18n="menu.s4.i4.name">Apfelschorle</span>
+                      <span class="mn__leader" aria-hidden="true"></span>
+                      <span class="mn__price">3,80 €</span>
+                    </div>
+                    <p class="mn__desc" data-i18n="menu.s4.i4.desc">Aus eigenem Presssaft.</p>
+                  </li>
+                </ul>
+              </div>
+
+              <div class="mn__page">
+                <ul class="mn__list">
+                  <li class="mn__item">
+                    <div class="mn__row">
+                      <span class="mn__name" data-i18n="menu.s4.i5.name">Weißbier vom Fass</span>
+                      <span class="mn__leader" aria-hidden="true"></span>
+                      <span class="mn__price">4,80 €</span>
+                    </div>
+                    <p class="mn__desc" data-i18n="menu.s4.i5.desc">0,5 l, mit Hefeweizen-Note.</p>
+                  </li>
+                  <li class="mn__item">
+                    <div class="mn__row">
+                      <span class="mn__name" data-i18n="menu.s4.i6.name">Spätburgunder</span>
+                      <span class="mn__leader" aria-hidden="true"></span>
+                      <span class="mn__price">7,50 €</span>
+                    </div>
+                    <p class="mn__desc" data-i18n="menu.s4.i6.desc">0,2 l, trocken, aus Baden.</p>
+                  </li>
+                  <li class="mn__item">
+                    <div class="mn__row">
+                      <span class="mn__name" data-i18n="menu.s4.i7.name">Spezi</span>
+                      <span class="mn__leader" aria-hidden="true"></span>
+                      <span class="mn__price">3,90 €</span>
+                    </div>
+                    <p class="mn__desc" data-i18n="menu.s4.i7.desc">0,5 l, Cola mit Orangenlimonade.</p>
+                  </li>
+                  <li class="mn__item">
+                    <div class="mn__row">
+                      <span class="mn__name" data-i18n="menu.s4.i8.name">Kaffee mit Milch</span>
+                      <span class="mn__leader" aria-hidden="true"></span>
+                      <span class="mn__price">3,50 €</span>
+                    </div>
+                    <p class="mn__desc" data-i18n="menu.s4.i8.desc">Frisch gebrüht, mit heißer Milch.</p>
+                  </li>
+                </ul>
+              </div>
+
+            </div>
+          </div>
+
+          <div class="mn__dots" role="tablist" aria-label="Seiten"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- FOOTER -->
+    <footer class="ft">
+      <div class="ft__bg" aria-hidden="true">
+        <img src="https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?auto=format&fit=crop&w=2400&q=80" alt="" loading="lazy" decoding="async">
+      </div>
+      <span class="ft__veil" aria-hidden="true"></span>
+
+      <div class="ft__inner">
+        <div class="ft__col">
+          <h3 class="ft__label" data-i18n="ft.addr.label">Anschrift</h3>
+          <address class="ft__addr">
+            <span data-i18n="ft.addr.street">Lindenstraße 42</span><br>
+            <span data-i18n="ft.addr.city">10179 Berlin</span><br>
+            <span data-i18n="ft.addr.country">Deutschland</span>
+          </address>
+
+          <h3 class="ft__label ft__label--mt" data-i18n="ft.pay.label">Zahlungsarten</h3>
+          <ul class="ft__pay">
+            <li><i class="bi bi-credit-card-2-front" title="Kreditkarte"></i></li>
+            <li><i class="bi bi-paypal" title="PayPal"></i></li>
+            <li><i class="bi bi-apple" title="Apple Pay"></i></li>
+            <li><i class="bi bi-google" title="Google Pay"></i></li>
+            <li><i class="bi bi-cash-coin" title="Bar"></i></li>
+          </ul>
+        </div>
+
+        <div class="ft__col ft__col--brand">
+          <a href="#/home" class="ft__logo" aria-label="Zur Goldenen Linde">
+            <i class="bi bi-tree ft__leaf" aria-hidden="true"></i>
+            <span class="ft__mark">GL</span>
+            <span class="ft__est">1897</span>
+          </a>
+
+          <p class="ft__para" data-i18n="ft.para">
+            Ein Gasthaus im Herzen Berlins. Seit 1897 kochen wir mit Zutaten aus der Region und mit der Ruhe, die gutes Essen verdient.
+          </p>
+
+          <ul class="ft__social">
+            <li><a href="#" aria-label="Instagram" target="_blank" rel="noopener"><i class="bi bi-instagram"></i></a></li>
+            <li><a href="#" aria-label="Facebook"  target="_blank" rel="noopener"><i class="bi bi-facebook"></i></a></li>
+            <li><a href="#" aria-label="Pinterest" target="_blank" rel="noopener"><i class="bi bi-pinterest"></i></a></li>
+            <li><a href="#" aria-label="YouTube"   target="_blank" rel="noopener"><i class="bi bi-youtube"></i></a></li>
+          </ul>
+        </div>
+
+        <div class="ft__col">
+          <h3 class="ft__label" data-i18n="ft.contact.label">Kontakt</h3>
+          <ul class="ft__contact">
+            <li><i class="bi bi-telephone" aria-hidden="true"></i><a href="tel:+493012345678">030 123 456 78</a></li>
+            <li><i class="bi bi-envelope"  aria-hidden="true"></i><a href="mailto:hallo@zurgoldenenlinde.de">hallo@zurgoldenenlinde.de</a></li>
+            <li><i class="bi bi-clock"     aria-hidden="true"></i><span data-i18n="ft.contact.hours">Di bis So, 17:00 bis 23:00</span></li>
+            <li><i class="bi bi-geo-alt"   aria-hidden="true"></i><a href="#/contact" data-i18n="ft.contact.map">Auf der Karte ansehen</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="ft__base">
+        <p>&copy; <span id="year"></span> Zur Goldenen Linde. <span data-i18n="ft.rights">Alle Rechte vorbehalten.</span></p>
+      </div>
+    </footer>
+
+  </section>
+
+
+  <!-- ═══════════  BOOK A TABLE  ═══════════ -->
+  <section data-page="book" class="page" hidden>
+
+    <div class="bk">
+      <div class="bk__bg" aria-hidden="true">
+        <img src="https://images.unsplash.com/photo-1559339352-11d035aa65de?auto=format&fit=crop&w=2400&q=80" alt="" loading="eager" decoding="async">
+      </div>
+      <span class="bk__veil" aria-hidden="true"></span>
+
+      <div class="bk__inner">
+        <form class="bk__form" hx-post="/reserve" hx-target="#bk-status" hx-swap="innerHTML" novalidate>
+          <div class="bk__grid">
+
+            <div class="bk__field">
+              <label for="bk-name" data-i18n="bk.name">Name</label>
+              <input id="bk-name" name="name" type="text" autocomplete="name" required>
+            </div>
+
+            <div class="bk__field">
+              <label for="bk-email" data-i18n="bk.email">E-Mail</label>
+              <input id="bk-email" name="email" type="email" autocomplete="email" required>
+            </div>
+
+            <div class="bk__field">
+              <label for="bk-phone" data-i18n="bk.phone">Telefon</label>
+              <input id="bk-phone" name="phone" type="tel" autocomplete="tel">
+            </div>
+
+            <div class="bk__field">
+              <label for="bk-guests" data-i18n="bk.guests">Personen</label>
+              <select id="bk-guests" name="guests" required>
+                <option value="" disabled selected></option>
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5</option>
+                <option value="6">6</option>
+                <option value="7">7</option>
+                <option value="8">8</option>
+                <option value="9+">9+</option>
+              </select>
+            </div>
+
+            <div class="bk__field">
+              <label for="bk-date" data-i18n="bk.date">Datum</label>
+              <input id="bk-date" name="date" type="date" required>
+            </div>
+
+            <div class="bk__field">
+              <label for="bk-time" data-i18n="bk.time">Uhrzeit</label>
+              <input id="bk-time" name="time" type="time" required>
+            </div>
+
+            <div class="bk__field bk__field--full">
+              <label for="bk-note" data-i18n="bk.note">Anmerkungen</label>
+              <textarea id="bk-note" name="note" rows="3"></textarea>
+            </div>
+
+            <div class="bk__field bk__field--full bk__field--action">
+              <button type="submit" class="bk__btn">
+                <span data-i18n="bk.submit">Anfrage senden</span>
+              </button>
+            </div>
+
+          </div>
+
+          <div id="bk-status" class="bk__status" aria-live="polite"></div>
+        </form>
+      </div>
+    </div>
+
+    <!-- RESERVATION INFO -->
+    <div class="binfo">
+      <div class="binfo__inner">
+
+        <div class="binfo__col">
+          <i class="bi bi-hourglass-split binfo__icon" aria-hidden="true"></i>
+          <h3 class="binfo__label" data-i18n="binfo.time.label">Tischdauer</h3>
+          <p class="binfo__text" data-i18n="binfo.time.text">
+            Wir halten Ihren Tisch für zwei Stunden frei. Länger auf Anfrage.
+          </p>
+        </div>
+
+        <div class="binfo__col">
+          <i class="bi bi-people binfo__icon" aria-hidden="true"></i>
+          <h3 class="binfo__label" data-i18n="binfo.group.label">Gruppen</h3>
+          <p class="binfo__text" data-i18n="binfo.group.text">
+            Ab 9 Personen reservieren wir im Nebenraum. Bitte mindestens 48 Stunden vorher.
+          </p>
+        </div>
+
+        <div class="binfo__col">
+          <i class="bi bi-calendar-check binfo__icon" aria-hidden="true"></i>
+          <h3 class="binfo__label" data-i18n="binfo.cancel.label">Stornierung</h3>
+          <p class="binfo__text" data-i18n="binfo.cancel.text">
+            Kostenfrei bis 24 Stunden vorher. Danach berechnen wir 10 Euro pro Person.
+          </p>
+        </div>
+
+      </div>
+    </div>
+
+        <!-- PRIVATE EVENTS -->
+    <div class="bpriv">
+      <div class="bpriv__inner">
+
+        <div class="bpriv__content">
+          <h2 class="bpriv__heading" data-i18n="bpriv.heading">Feiern bei uns</h2>
+          <p class="bpriv__text" data-i18n="bpriv.text">
+            Ob Geburtstag, Firmenfeier oder Familienessen. Unser Nebenraum fasst bis zu 40 Gäste und lässt sich nach Ihren Wünschen herrichten.
+          </p>
+
+          <ul class="bpriv__list">
+            <li data-i18n="bpriv.l1">Eigene Speisekarte nach Absprache</li>
+            <li data-i18n="bpriv.l2">Getränkeauswahl aus Keller und Fass</li>
+            <li data-i18n="bpriv.l3">Blumen, Tischdeko und Musik nach Wunsch</li>
+            <li data-i18n="bpriv.l4">Persönliche Ansprechpartnerin während des Abends</li>
+          </ul>
+
+          <a href="#/contact" class="bpriv__btn">
+            <span data-i18n="bpriv.btn">Anfrage senden</span>
+          </a>
+        </div>
+
+        <div class="bpriv__media">
+          <img src="https://images.unsplash.com/photo-1530103862676-de8c9debad1d?auto=format&fit=crop&w=1200&q=80"
+               alt="" loading="lazy" decoding="async">
+        </div>
+
+      </div>
+    </div>
+
+    <footer class="ft">
+      <div class="ft__bg" aria-hidden="true">
+        <img src="https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?auto=format&fit=crop&w=2400&q=80" alt="" loading="lazy" decoding="async">
+      </div>
+      <span class="ft__veil" aria-hidden="true"></span>
+
+      <div class="ft__inner">
+        <div class="ft__col">
+          <h3 class="ft__label" data-i18n="ft.addr.label">Anschrift</h3>
+          <address class="ft__addr">
+            <span data-i18n="ft.addr.street">Lindenstraße 42</span><br>
+            <span data-i18n="ft.addr.city">10179 Berlin</span><br>
+            <span data-i18n="ft.addr.country">Deutschland</span>
+          </address>
+
+          <h3 class="ft__label ft__label--mt" data-i18n="ft.pay.label">Zahlungsarten</h3>
+          <ul class="ft__pay">
+            <li><i class="bi bi-credit-card-2-front" title="Kreditkarte"></i></li>
+            <li><i class="bi bi-paypal" title="PayPal"></i></li>
+            <li><i class="bi bi-apple" title="Apple Pay"></i></li>
+            <li><i class="bi bi-google" title="Google Pay"></i></li>
+            <li><i class="bi bi-cash-coin" title="Bar"></i></li>
+          </ul>
+        </div>
+
+        <div class="ft__col ft__col--brand">
+          <a href="#/home" class="ft__logo" aria-label="Zur Goldenen Linde">
+            <i class="bi bi-tree ft__leaf" aria-hidden="true"></i>
+            <span class="ft__mark">GL</span>
+            <span class="ft__est">1897</span>
+          </a>
+
+          <p class="ft__para" data-i18n="ft.para">
+            Ein Gasthaus im Herzen Berlins. Seit 1897 kochen wir mit Zutaten aus der Region und mit der Ruhe, die gutes Essen verdient.
+          </p>
+
+          <ul class="ft__social">
+            <li><a href="#" aria-label="Instagram" target="_blank" rel="noopener"><i class="bi bi-instagram"></i></a></li>
+            <li><a href="#" aria-label="Facebook"  target="_blank" rel="noopener"><i class="bi bi-facebook"></i></a></li>
+            <li><a href="#" aria-label="Pinterest" target="_blank" rel="noopener"><i class="bi bi-pinterest"></i></a></li>
+            <li><a href="#" aria-label="YouTube"   target="_blank" rel="noopener"><i class="bi bi-youtube"></i></a></li>
+          </ul>
+        </div>
+
+        <div class="ft__col">
+          <h3 class="ft__label" data-i18n="ft.contact.label">Kontakt</h3>
+          <ul class="ft__contact">
+            <li><i class="bi bi-telephone" aria-hidden="true"></i><a href="tel:+493012345678">030 123 456 78</a></li>
+            <li><i class="bi bi-envelope"  aria-hidden="true"></i><a href="mailto:hallo@zurgoldenenlinde.de">hallo@zurgoldenenlinde.de</a></li>
+            <li><i class="bi bi-clock"     aria-hidden="true"></i><span data-i18n="ft.contact.hours">Di bis So, 17:00 bis 23:00</span></li>
+            <li><i class="bi bi-geo-alt"   aria-hidden="true"></i><a href="#/contact" data-i18n="ft.contact.map">Auf der Karte ansehen</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="ft__base">
+        <p>&copy; <span id="year"></span> Zur Goldenen Linde. <span data-i18n="ft.rights">Alle Rechte vorbehalten.</span></p>
+      </div>
+    </footer>
+
+  </section>
+
+
+  <!-- ═══════════  CONTACT  ═══════════ -->
+  <section data-page="contact" class="page" hidden>
+
+    <div class="cth">
+      <div class="cth__bg" aria-hidden="true">
+        <img src="https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?auto=format&fit=crop&w=2400&q=80" alt="" loading="eager" decoding="async">
+      </div>
+      <span class="cth__veil" aria-hidden="true"></span>
+      <div class="cth__inner">
+        <h1 class="cth__title" data-i18n="nav.contact">Kontakt</h1>
+      </div>
+    </div>
+
+    <div class="cf">
+      <div class="cf__inner">
+        <form class="cf__form" hx-post="/contact" hx-target="#cf-status" hx-swap="innerHTML" novalidate>
+          <div class="cf__grid">
+
+            <div class="cf__field">
+              <label for="cf-name" data-i18n="cf.name">Name</label>
+              <input id="cf-name" name="name" type="text" autocomplete="name" required>
+            </div>
+
+            <div class="cf__field">
+              <label for="cf-email" data-i18n="cf.email">E-Mail</label>
+              <input id="cf-email" name="email" type="email" autocomplete="email" required>
+            </div>
+
+            <div class="cf__field cf__field--full">
+              <label for="cf-subject" data-i18n="cf.subject">Betreff</label>
+              <input id="cf-subject" name="subject" type="text" required>
+            </div>
+
+            <div class="cf__field cf__field--full">
+              <label for="cf-message" data-i18n="cf.message">Nachricht</label>
+              <textarea id="cf-message" name="message" rows="6" required></textarea>
+            </div>
+
+            <div class="cf__field cf__field--full cf__field--action">
+              <button type="submit" class="cf__btn">
+                <span data-i18n="cf.submit">Nachricht senden</span>
+              </button>
+            </div>
+
+          </div>
+
+          <div id="cf-status" class="cf__status" aria-live="polite"></div>
+        </form>
+      </div>
+    </div>
+        <!-- CONTACT INFO CARDS -->
+    <div class="cinfo">
+      <div class="cinfo__inner">
+
+        <div class="cinfo__col">
+          <i class="bi bi-geo-alt cinfo__icon" aria-hidden="true"></i>
+          <h3 class="cinfo__label" data-i18n="cinfo.addr.label">Anschrift</h3>
+          <p class="cinfo__text">
+            <span data-i18n="ft.addr.street">Lindenstraße 42</span><br>
+            <span data-i18n="ft.addr.city">10179 Berlin</span><br>
+            <span data-i18n="ft.addr.country">Deutschland</span>
+          </p>
+        </div>
+
+        <div class="cinfo__col">
+          <i class="bi bi-telephone cinfo__icon" aria-hidden="true"></i>
+          <h3 class="cinfo__label" data-i18n="cinfo.reach.label">Erreichbar</h3>
+          <p class="cinfo__text">
+            <a href="tel:+493012345678">030 123 456 78</a><br>
+            <a href="mailto:hallo@zurgoldenenlinde.de">hallo@zurgoldenenlinde.de</a>
+          </p>
+        </div>
+
+        <div class="cinfo__col">
+          <i class="bi bi-clock cinfo__icon" aria-hidden="true"></i>
+          <h3 class="cinfo__label" data-i18n="cinfo.hours.label">Öffnungszeiten</h3>
+          <p class="cinfo__text" data-i18n="cinfo.hours.text">
+            Dienstag bis Sonntag<br>17:00 bis 23:00 Uhr<br>Montag Ruhetag
+          </p>
+        </div>
+
+      </div>
+    </div>
+
+    <div class="map">
+      <iframe
+        title="Zur Goldenen Linde"
+        src="https://maps.google.com/maps?q=Lindenstra%C3%9Fe%2042%2C%2010179%20Berlin&t=&z=15&ie=UTF8&iwloc=&output=embed"
+        loading="lazy"
+        referrerpolicy="no-referrer-when-downgrade"
+        allowfullscreen></iframe>
+    </div>
+        <!-- HOW TO FIND US -->
+    <div class="cway">
+      <div class="cway__inner">
+
+        <div class="cway__media">
+          <img src="https://images.unsplash.com/photo-1560969184-10fe8719e047?auto=format&fit=crop&w=1200&q=80"
+               alt="" loading="lazy" decoding="async">
+        </div>
+
+        <div class="cway__content">
+          <h2 class="cway__heading" data-i18n="cway.heading">So finden Sie uns</h2>
+          <p class="cway__text" data-i18n="cway.text">
+            Mitten in Berlin Mitte, nur wenige Minuten von der U-Bahn und mit dem Auto gut erreichbar.
+          </p>
+
+          <ul class="cway__list">
+
+            <li class="cway__item">
+              <i class="bi bi-train-front cway__item-icon" aria-hidden="true"></i>
+              <div>
+                <h4 class="cway__item-title" data-i18n="cway.t1.title">Mit der Bahn</h4>
+                <p class="cway__item-text" data-i18n="cway.t1.text">U2 Heinrich-Heine-Straße, 4 Minuten zu Fuß.</p>
+              </div>
+            </li>
+
+            <li class="cway__item">
+              <i class="bi bi-car-front cway__item-icon" aria-hidden="true"></i>
+              <div>
+                <h4 class="cway__item-title" data-i18n="cway.t2.title">Mit dem Auto</h4>
+                <p class="cway__item-text" data-i18n="cway.t2.text">Parkhaus Linden-Center, 200 Meter entfernt.</p>
+              </div>
+            </li>
+
+            <li class="cway__item">
+              <i class="bi bi-bicycle cway__item-icon" aria-hidden="true"></i>
+              <div>
+                <h4 class="cway__item-title" data-i18n="cway.t3.title">Mit dem Rad</h4>
+                <p class="cway__item-text" data-i18n="cway.t3.text">Überdachte Fahrradständer direkt vor dem Eingang.</p>
+              </div>
+            </li>
+
+          </ul>
+        </div>
+
+      </div>
+    </div>
+
+  </section>
+
+</main>
+
+<script src="script.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
