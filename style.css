@@ -2515,3 +2515,25 @@ body{
   .bpriv__media{ aspect-ratio:16 / 12; order:-1; }
   .bpriv__content{ max-width:none; }
 }
+/* ══════════════════════════════════════════════════════════════════════
+   SECTION DIVIDERS  —  zigzag & torn paper edges
+   ══════════════════════════════════════════════════════════════════════ */
+.sect-div{
+  position:absolute;
+  left:0; right:0;
+  bottom:-1px;
+  width:100%;
+  height:clamp(36px, 5vw, 64px);
+  display:block;
+  pointer-events:none;
+  z-index:4;
+}
+
+/* sections that receive a divider need positioning context */
+.intro,
+.std,
+.tri,
+.vals,
+.bpriv{
+  position:relative;
+}
